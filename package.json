@@ -1,0 +1,25 @@
+{
+    "name": "chinesegen",
+    "version": "0.1.0",
+    "description": "Lorem Ipsum generator for Chinese",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/0of/chinesegen.git"
+    },
+    "files": [
+        "lib"
+    ],
+    "keywords": [
+        "Lorem",
+        "Ipsum",
+        "Chinese",
+        "random"
+    ],
+    "author": "0of",
+    "license": "MIT",
+    "homepage": "https://github.com/0of/chinesegen",
+    "devDependencies": {
+        "eslint": "latest",
+        "debug": "latest"
+    }
+}
