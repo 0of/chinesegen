@@ -1,4 +1,6 @@
 # chinesegen
+[![npm version](https://badge.fury.io/js/chinesegen.svg)](http://badge.fury.io/js/chinesegen)
+
 Lorem Ipsum generator for Chinese
 It can generate words randomly including punctuation marks in Chinese
 ## Usages
