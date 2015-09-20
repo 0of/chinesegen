@@ -1,14 +1,15 @@
 {
     "name": "chinesegen",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Lorem Ipsum generator for Chinese",
-    "main": "index.js",
+    "main": "./index.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/0of/chinesegen.git"
     },
     "files": [
-        "lib"
+        "lib",
+        "index.js"
     ],
     "keywords": [
         "Lorem",
