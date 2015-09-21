@@ -24,17 +24,23 @@ function generate (opts) {
         // min/max word count in a sentence
         minCount = Math.abs(options.minCount) || 5,
         maxCount = Math.abs(options.maxCount) || 20,
+        formater = opts.format == '\\uXXXX' ? formatOutput : undefined,
         periods = extendPeriod(options.toleratedPeriods || '');
 
     var avail = 0;
-    var genWords = opts.freq === true ? freqUsedWordsGen : wordsGen,
+    var genHelper = function (genFn) {
+            return formater === undefined ? genFn : function () {
+                return formatOutput(genFn.apply(undefined, arguments));
+            };
+        },
+        genWords = genHelper(opts.freq === true ? freqUsedWordsGen : wordsGen),
         wordCountFn = function () {
             var count = rand(minCount, maxCount);
             return count > avail ? avail - 1 : count;
         },
-        genPeriod = function () {
+        genPeriod = genHelper(function () {
             return periods[rand(0, periods.length)];
-        },
+        }),
         genSentences = function (genEachSentenceFn) {
             var gen = {
                 text: '',
@@ -98,4 +104,10 @@ function getCharAt (index) {
         // low surrogate
         return false;
     }
+}
+
+function formatOutput (text) {
+    return text.replace(/[\s\S]/g, function (ch) {
+        return '\\u' + ('0000' + (+ch.charCodeAt(0)).toString(16).toUpperCase()).substr(-4);
+    });
 }
