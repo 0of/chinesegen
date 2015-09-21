@@ -99,4 +99,3 @@ function getCharAt (index) {
         return false;
     }
 }
-

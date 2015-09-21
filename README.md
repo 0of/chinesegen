@@ -35,21 +35,41 @@ npm install chinesegen
 ```
 
 # Input options
-  - **<u>count</u>**: { _Number_ } the total word count of the generated paragraph 
+  - **<u>count</u>**: { _Number_ }
 
+  the total word count of the generated paragraph
   篇幅字数总长
 
-  - **<u>freq</u>**: { _Boolean_ } apply frequently used words
-  - **<u>toleratedPeriods</u>**: { _String_ } given characters(each represents one period) will be treated as unique periods appended to Chinese periods list
+  - **<u>freq</u>**: { _Boolean_ }
+
+  apply frequently used words
+  允许常用字
+
+  - **<u>toleratedPeriods</u>**: { _String_ }
+
+  given characters(each represents one period) will be treated as unique periods appended to Chinese periods list
+
   ```javascript
     // treat both Chinese formal periods and '?.!' as full stops of the Chinese sentences
     generate({count: 50, toleratedPeriods:'?.!'});
   ```
+  允许其他字符作句号
 
 # Output object
-  - **<u>text</u>**: { _String_ } random text
-  - **<u>total</u>**: { _Number_ } text total length
-  - **<u>sentenceCount</u>**: { _Number_ } sentence count
+  - **<u>text</u>**: { _String_ }
+
+  random text
+  生成的随机文本
+
+  - **<u>total</u>**: { _Number_ }
+
+  text total length
+  生成的文字总长度
+
+  - **<u>sentenceCount</u>**: { _Number_ }
+
+  sentence count
+  句子数
 
 # License
   MIT License
