@@ -7,7 +7,7 @@ var generate = require('../index');
 describe('chinesegen generate API', function () {
     it('should generate empty object', function () {
         var empty = generate();
-        should(empty).exactly({
+        should(empty).eql({
             text: '',
             total: 0,
             sentenceCount: 0
@@ -55,4 +55,6 @@ function length (text) {
     for (var i = 0; i < text.length; i++) {
         if (isValidChar.call(text, i) === true) len++;
     }
+
+    return len;
 }
