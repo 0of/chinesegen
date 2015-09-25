@@ -12,11 +12,20 @@ module.exports = function (grunt) {
                 src: ['lib/*.js', 'test/*.js']
             }
         },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec'
+                },
+                src: ['./test/**/*.js']
+            }
+        },
         webpack: require('./webpack.chinesegen')
     });
 
     grunt.registerTask('eslint', 'eslint:target');
-    grunt.registerTask('build', ['eslint:target', 'clean', 'webpack']);
+    grunt.registerTask('test', ['mochaTest:test']);
+    grunt.registerTask('build', ['eslint:target', 'mochaTest:test', 'clean', 'webpack']);
 
     require('load-grunt-tasks')(grunt);
 };

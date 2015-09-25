@@ -24,7 +24,7 @@ function generate (opts) {
         // min/max word count in a sentence
         minCount = Math.abs(options.minCount) || 5,
         maxCount = Math.abs(options.maxCount) || 20,
-        formater = opts.format == '\\uXXXX' ? formatOutput : undefined,
+        formater = options.format == '\\uXXXX' ? formatOutput : undefined,
         periods = extendPeriod(options.toleratedPeriods || '');
 
     var avail = 0;
@@ -33,7 +33,7 @@ function generate (opts) {
                 return formatOutput(genFn.apply(undefined, arguments));
             };
         },
-        genWords = genHelper(opts.freq === true ? freqUsedWordsGen : wordsGen),
+        genWords = genHelper(options.freq === true ? freqUsedWordsGen : wordsGen),
         wordCountFn = function () {
             var count = rand(minCount, maxCount);
             return count > avail ? avail - 1 : count;
