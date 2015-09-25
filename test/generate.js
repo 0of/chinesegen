@@ -22,6 +22,13 @@ describe('chinesegen generate API', function () {
         should(actual).exactly(expected);
         should(actual).exactly(generated.total);
     });
+
+    it('should generate correct sentence count', function () {
+        var total = rand(50, 200);
+        var generated = generate({count: total});
+
+        should(sentences(/[\u3002\uFF1F\uFF01]/g, generated.text)).exactly(generated.sentenceCount);
+    });
 });
 
 function rand (includedMin, includedMax) {
@@ -57,4 +64,8 @@ function length (text) {
     }
 
     return len;
+}
+
+function sentences (periods, text) {
+    return (text.match(periods) || []).length;
 }
