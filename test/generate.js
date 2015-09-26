@@ -16,11 +16,25 @@ describe('chinesegen generate API', function () {
 
     it('should generate same word count as it returns', function () {
         var expected = rand(50, 200);
-        var generated = generate({count: expected});
+        var generated = generate({ count: expected });
 
         var actual = length(generated.text);
         should(actual).exactly(expected);
         should(actual).exactly(generated.total);
+    });
+
+    it('should generate correct sentence count', function () {
+        var total = rand(50, 200);
+        var generated = generate({ count: total });
+
+        should(sentences(/[\u3002\uFF1F\uFF01]/g, generated.text)).exactly(generated.sentenceCount);
+    });
+
+    it('should generate correct sentence count when given tolerated periods', function () {
+        var total = rand(50, 200);
+        var generated = generate({ count: total, toleratedPeriods: '.?!' });
+
+        should(sentences(/[\u3002\uFF1F\uFF01\.\?\!]/g, generated.text)).exactly(generated.sentenceCount);
     });
 });
 
@@ -57,4 +71,8 @@ function length (text) {
     }
 
     return len;
+}
+
+function sentences (periods, text) {
+    return (text.match(periods) || []).length;
 }

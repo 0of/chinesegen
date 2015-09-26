@@ -24,7 +24,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('eslint', 'eslint:target');
-    grunt.registerTask('test', ['mochaTest:test']);
+    grunt.registerTask('test', ['eslint:target', 'mochaTest:test']);
     grunt.registerTask('build', ['eslint:target', 'mochaTest:test', 'clean', 'webpack']);
 
     require('load-grunt-tasks')(grunt);
