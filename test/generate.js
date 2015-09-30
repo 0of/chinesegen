@@ -47,6 +47,22 @@ describe('chinesegen generate API', function () {
         should(lens.len).exactly(generated.total);
         should(lens.matched * format.length).exactly(generated.text.length);
     });
+
+    it('should generate correct sentence count when format as \\uXXXX', function () {
+        var format = '\\uXXXX';
+        var total = rand(50, 200);
+        var generated = generate({ count: total, format: format });
+
+        should(sentences(/(\\u3002)|(\\uFF1F)|(\\uFF01)/g, generated.text)).exactly(generated.sentenceCount);
+    });
+
+    it('should generate correct sentence count when given tolerated periods and format as \\uXXXX', function () {
+        var format = '\\uXXXX';
+        var total = rand(50, 200);
+        var generated = generate({ count: total, format: format, toleratedPeriods: '.?!' });
+
+        should(sentences(/(\\u3002)|(\\uFF1F)|(\\uFF01)|(\\u002E)|(\\u003F)|(\\u0021)/g, generated.text)).exactly(generated.sentenceCount);
+    });
 });
 
 function rand (includedMin, includedMax) {
