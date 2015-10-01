@@ -36,7 +36,7 @@ function generate (opts) {
         genWords = genHelper(options.freq === true ? freqUsedWordsGen : wordsGen),
         wordCountFn = function () {
             var count = rand(minCount, maxCount);
-            return count > avail ? avail - 1 : count;
+            return count >= avail ? avail - 1 : count;
         },
         genPeriod = genHelper(function () {
             return periods[rand(0, periods.length)];
