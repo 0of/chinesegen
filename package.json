@@ -1,6 +1,6 @@
 {
     "name": "chinesegen",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Lorem Ipsum generator for Chinese",
     "main": "./index.js",
     "repository": {
